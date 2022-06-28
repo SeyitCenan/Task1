@@ -1,54 +1,15 @@
 import requests
-import simplejson as json
-number = input("""Yapmak istediginiz test için bir sayı secınız
- 1- A record lookup 
- 2- TXT record lookup 
- 3- NS record lookup
- 4- MX record lookup 
- 5- AAAA record lookup 
- 6- DNS CNAME record lookup
- 7- DNS zone transfer checker""")
-if number == '1':
-   url = "https://core.securityforeveryone.com/api/solidarity/report"
-   headers = {'Content-Type': 'application/json','accept':'application/json'}
-   data = { "analysis_slug": "fb39b563-90a2-42c0-b8f5-ab061ef6dc20", "job_slug": "c83e535b-4752-4220-8159-cd8a9fadd327",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-   r = requests.post(url, data=json.dumps(data), headers=headers)
-   print(r.text)
-elif number == '2':
-    url = "https://core.securityforeveryone.com/api/solidarity/report"
-    headers = {'Content-Type': 'application/json','accept':'application/json'}
-    data = { "analysis_slug": "4993b4a3-f2f7-41b0-88e2-21e8098a108a", "job_slug": "8f1071fa-e8ea-4bb5-a804-ef1f00e314bf",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
-    print(r.text)
-elif number == '3':
-    url = "https://core.securityforeveryone.com/api/solidarity/report"
-    headers = {'Content-Type': 'application/json','accept':'application/json'}
-    data = { "analysis_slug": "f624ddef-023b-4817-8fbb-12c7a9a20dfd", "job_slug": "3e27533b-733a-4f6f-bd46-4fb532c2b5fc",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
-    print(r.text)
-elif number == '4':
-    url = "https://core.securityforeveryone.com/api/solidarity/report"
-    headers = {'Content-Type': 'application/json','accept':'application/json'}
-    data = { "analysis_slug": "dc6576b7-1297-472a-9c56-11ee84bc217a", "job_slug": "8bdcc645-c01e-4a2b-a140-4fcdeacc440b",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
-    print(r.text)
-elif number == '5':
-    url = "https://core.securityforeveryone.com/api/solidarity/report"
-    headers = {'Content-Type': 'application/json','accept':'application/json'}
-    data = { "analysis_slug": "0b9f7f6e-43b9-4428-880a-8e2e722eb40e", "job_slug": "811204cb-bd6a-45a0-8c8b-80dee18b9b6b",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
-    print(r.text)
-elif number == '6':
-    url = "https://core.securityforeveryone.com/api/solidarity/report"
-    headers = {'Content-Type': 'application/json','accept':'application/json'}
-    data = { "analysis_slug": "bc963552-61ca-49d6-b6ce-4c9988c3977b", "job_slug": "15a91b2b-a6de-4eb7-b941-cd421ea57d01",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
-    print(r.text)
-elif number == '7':
-    url = "https://core.securityforeveryone.com/api/solidarity/report"
-    headers = {'Content-Type': 'application/json','accept':'application/json'}
-    data = { "analysis_slug": "f65dab50-a402-446f-896c-5162d1ab86c", "job_slug": "4ad52c61-85f5-498f-917a-c7ad90f8b7e3",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
-    print(r.text)
-else:
-    print("Lütfen geçerli bir sayı giriniz")
+import simplejson as simplejson
+import json
+domain_f = input("Tarama yapmak istediginiz domaini giriniz  Ex:https://core.securityforeveryone.com/api/solidarity/start")
+slug_f=input("Yapmak istediginiz tarama türünü yazınız Ex:a-record-lookup")
+headers = {'Content-Type': 'application/json','accept':'application/json'}
+data_f = { "slug":slug_f, "asset": "securityforeveryone.com",'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
+r = requests.post(domain_f, data=simplejson.dumps(data_f), headers=headers)
+json_object = json.loads(r.text)
+anl_s=json_object["value"]["analysis_slug"]
+job_s=json_object["value"]["job_slugs"][0]
+domain_s = input("Görmek istediginiz domaini giriniz  Ex:https://core.securityforeveryone.com/api/solidarity/report")
+data_s = { "analysis_slug": anl_s, "job_slug": job_s,'token':'IQFgQd5ohak6GcAfpqKOuq9fk5rGfhOtG2jz3jSet0tiH9zi8AdkLKvhGfNXmy5H7aczRgx4qlJEiF7K_VWtkQ'}
+r = requests.post(domain_s, data=json.dumps(data_s), headers=headers)
+print(r.text)
